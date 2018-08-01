@@ -1,0 +1,23 @@
+language: generic
+sudo: true
+branches:
+    only:
+        - master
+addons:
+    apt:
+      sources:
+        - ubuntu-toolchain-r-test
+before_install:
+    - bash ./scripts/build_travis.sh
+    - pip install --user cpp-coveralls
+install:       
+    - hash -r
+    - echo "Now try to build the module"
+    - mkdir build 
+    - cd build
+    - cmake -DCOVERAGE=1 ..
+    - make all
+script:
+    - ./hello
+after_success:
+    # - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
