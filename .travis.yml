@@ -17,18 +17,17 @@ addons:
         - ubuntu-toolchain-r-test
 
 before_install:
-    - bash ./scripts/build_travis.sh
-    - pip install --user cpp-coveralls
-    - eval "${MATRIX_EVAL}"
-    - eval "${OSX_PATH}"
+    # - bash ./scripts/build_travis.sh
+    # - pip install --user cpp-coveralls
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install gcc && brew info gcc; fi
 
 install:       
     - hash -r
     - echo "Now try to build the module"
-    - mkdir build 
-    - cd build
-    - cmake -DCOVERAGE=1 ..
-    - make all
+    # - mkdir build 
+    # - cd build
+    # - cmake -DCOVERAGE=1 ..
+    # - make all
 script:
     - ./hello
 after_success:
