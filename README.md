@@ -2,7 +2,9 @@
 
 Example for using OpenMP
 
-## Setup OSX
+## Installation
+
+### Setup OSX
 
 OpenMP header files are not included in Xcode gcc/g++, thus needs to perform
 the following:
@@ -17,4 +19,3 @@ Then set globals:
     export CC=/usr/local/bin/gcc-8
     export CXX=/usr/local/bin/g++-8
 ```
-
