@@ -6,6 +6,7 @@ branches:
 matrix:
   include:
     - os: osx
+      osx_image: xcode8
       env: CC=/usr/local/bin/gcc-8 CXX=/usr/local/bin/g++-8
     - os: linux
 
