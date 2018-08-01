@@ -5,7 +5,10 @@ matrix:
   include:
     - os: osx
       env:
-          - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
+          # - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
+          - MATRIX_EVAL= "brew update && brew install gcc && brew info gcc"
+          - OSX_PATH="export CC=/usr/local/gcc-8 && export CXX=/usr/local/g++-8"
+
     - os: linux
 
 addons:
@@ -17,6 +20,7 @@ before_install:
     - bash ./scripts/build_travis.sh
     - pip install --user cpp-coveralls
     - eval "${MATRIX_EVAL}"
+    - eval "${OSX_PATH}"
 
 install:       
     - hash -r
