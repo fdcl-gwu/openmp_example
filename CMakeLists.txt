@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.0)
 project(openmp)
 
 find_package(OpenMP)
