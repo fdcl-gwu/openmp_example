@@ -8,7 +8,7 @@ matrix:
     - os: osx
       osx_image: xcode8
       env:
-          - MATRIX_EVAL= "brew update && brew install gcc && CC=gcc-8 && CXX=g++-8"
+          - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
     - os: linux
 
 addons:
