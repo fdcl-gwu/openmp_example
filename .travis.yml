@@ -7,7 +7,8 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8
-      env: CC=/usr/local/bin/gcc-8 CXX=/usr/local/bin/g++-8
+      env:
+          - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/bin/gcc-8 && CXX=/usr/local/bin/g++-8"
     - os: linux
 
 addons:
@@ -18,7 +19,7 @@ addons:
 before_install:
     - bash ./scripts/build_travis.sh
     - pip install --user cpp-coveralls
-    - if [[ ${TRAVIS_OS_NAME} == "osx" ]]; then brew install gcc; fi
+    - eval "${MATRIX_EVAL}"
 
 install:       
     - hash -r
