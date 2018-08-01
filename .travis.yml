@@ -3,13 +3,22 @@ sudo: true
 branches:
     only:
         - master
+matrix:
+  include:
+    - os: osx
+      env: CC=/usr/local/bin/gcc-8 CXX=/usr/local/bin/g++-8
+    - os: linux
+
 addons:
     apt:
       sources:
         - ubuntu-toolchain-r-test
+
 before_install:
     - bash ./scripts/build_travis.sh
     - pip install --user cpp-coveralls
+    - if [[ ${ TRAVIS_OS_NAME } == "osx" ]]; brew install gcc; fi
+
 install:       
     - hash -r
     - echo "Now try to build the module"
