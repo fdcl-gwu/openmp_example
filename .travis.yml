@@ -7,7 +7,7 @@ matrix:
       env:
           # - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
           - MATRIX_EVAL= "brew update && brew install gcc && brew info gcc"
-          - OSX_PATH="export CC=/usr/local/gcc-8 && export CXX=/usr/local/g++-8"
+          - OSX_PATH=" CC=gcc-8 &&  CXX=g++-8"
 
     - os: linux
 
@@ -19,16 +19,16 @@ addons:
 before_install:
     # - bash ./scripts/build_travis.sh
     # - pip install --user cpp-coveralls
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm '/usr/local/include/c++'; fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install gcc && brew info gcc; fi
-
+    # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm '/usr/local/include/c++'; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew cask uninstall oclint && brew install gcc; fi
+    - eval "${OSX_PATH}"
 install:       
     - hash -r
     - echo "Now try to build the module"
-    # - mkdir build 
-    # - cd build
-    # - cmake -DCOVERAGE=1 ..
-    # - make all
+    - mkdir build 
+    - cd build
+    - cmake -DCOVERAGE=1 ..
+    - make all
 script:
     - ./hello
 after_success:
