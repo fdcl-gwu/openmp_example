@@ -1,12 +1,9 @@
 language: cpp
 sudo: true
-branches:
-    only:
-        - master
+
 matrix:
   include:
     - os: osx
-      osx_image: xcode8
       env:
           - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
     - os: linux
