@@ -1,13 +1,6 @@
 language: cpp
 sudo: true
-
-matrix:
-  include:
-    - os: osx
-      env:
-          # - MATRIX_EVAL= "brew update && brew install gcc && CC=/usr/local/gcc-8 && CXX=/usr/local/g++-8"
-
-    - os: linux
+os: linux
 
 addons:
     apt:
@@ -15,10 +8,8 @@ addons:
         - ubuntu-toolchain-r-test
 
 before_install:
-    # - bash ./scripts/build_travis.sh
-    # - pip install --user cpp-coveralls
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+    - bash ./scripts/build_travis.sh
+    - pip install --user cpp-coveralls
 install:       
     - hash -r
     - echo "Now try to build the module"
@@ -29,4 +20,4 @@ install:
 script:
     - ./hello
 after_success:
-    # - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
+    - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
