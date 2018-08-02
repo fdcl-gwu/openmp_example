@@ -1,13 +1,6 @@
-language: generic
+language: cpp
 sudo: true
-branches:
-    only:
-        - master
-matrix:
-  include:
-    - os: osx
-      env: CC=/usr/local/bin/gcc-8 CXX=/usr/local/bin/g++-8
-    - os: linux
+os: linux
 
 addons:
     apt:
@@ -17,8 +10,6 @@ addons:
 before_install:
     - bash ./scripts/build_travis.sh
     - pip install --user cpp-coveralls
-    - if [[ ${TRAVIS_OS_NAME} == "osx" ]]; then brew install gcc; fi
-
 install:       
     - hash -r
     - echo "Now try to build the module"
@@ -29,4 +20,4 @@ install:
 script:
     - ./hello
 after_success:
-    # - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
+    - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
