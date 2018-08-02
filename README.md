@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fdcl-gwu/openmp_example.svg?branch=master)](https://travis-ci.org/fdcl-gwu/openmp_example)
+
 ## OpenMP Example
 
 Example for using OpenMP
